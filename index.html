@@ -12,13 +12,78 @@
         <h1 class="text-center">Welcome to Pioneer Bank</h1>
         <div class="submit-area">
             <h4>Login</h4>
-            <input type="text" class="form-control">
+            <input type="text" class="form-control" placeholder="Email">
             <br>
-            <input type="password" class="form-control">
+            <input type="password" class="form-control" placeholder="Password">
             <br>
-            <button class="btn btn-success">Enter</button>
+            <button id="submit-button" class="btn btn-success">Enter</button>
         </div>
     </div>
-    
+    <div id="transaction-area">
+      <div class="row">
+          <div class="col-md-4">
+              <div class="deposit status">
+                <h5>Deposit</h5>
+                <h2>$ <span id="currentDeposit" >00</span></h2>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="withdraw status">
+                <h5>Withdraw</h5>
+                <h2>$00</h2>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="balance status">
+                <h5>Balance</h5>
+                <h2>$1240</h2>
+              </div>
+          </div>
+      </div>
+       <div class="row">
+           <div class="col-md-6">
+               <div class="submit-area">
+                <h4>Deposit</h4>
+                <input id="depositAmount" type="text" class="form-control" placeholder="$ Amount you want to Deposit">
+                <br>
+                <button id="addDeposit" class="btn btn-success">Deposit</button>
+               </div>
+           </div>
+           <div class="col-md-6">
+               <div class="submit-area">
+                <h4>Withdraw</h4>
+                <input type="text" class="form-control" placeholder="$ Amount you want to Withdraw">
+                <br>
+                <button class="btn btn-success">Withdraw</button>
+               </div>
+           </div>
+       </div>
+        </div>
+
+    </div>
+    <script>
+        //login event listener 
+        const submitBtn=document.getElementById("submit-button");
+        submitBtn.addEventListener('click',function(){
+            const loginArea=document.getElementById("login-area");
+            loginArea.style.display="none";
+            const transactionArea=document.getElementById("transaction-area");
+            transactionArea.style.display="block"
+        })
+        //deposit button event listener
+        const depositBtn=document.getElementById("addDeposit");
+        depositBtn.addEventListener("click",function(){
+            const depositAmount=document.getElementById("depositAmount").value;
+            const depositNumber=parseFloat(depositAmount);
+
+            const currentDeposit=document.getElementById("currentDeposit").innerText;
+            const currentDepositNumber = parseFloat(currentDeposit);
+            const totalDeposit = depositNumber + currentDepositNumber;
+            document.getElementById("currentDeposit").innerText=totalDeposit;
+            
+
+        })
+
+    </script>
 </body>
 </html>
